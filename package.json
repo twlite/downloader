@@ -1,0 +1,32 @@
+{
+  "name": "@discord-player/downloader",
+  "version": "1.0.0",
+  "description": "Stream downloader for discord-player",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd test && node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Snowflake107/discord-player-downloader.git"
+  },
+  "keywords": [
+    "discord-player",
+    "downloader",
+    "youtube",
+    "youtube-dl",
+    "ytdl",
+    "ytdl-core",
+    "ffmpeg",
+    "discord"
+  ],
+  "author": "Snowflake107",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Snowflake107/discord-player-downloader/issues"
+  },
+  "homepage": "https://github.com/Snowflake107/discord-player-downloader#readme",
+  "dependencies": {
+    "youtube-dl": "^3.0.2"
+  }
+}

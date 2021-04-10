@@ -1,7 +1,7 @@
 {
   "name": "@discord-player/downloader",
-  "version": "1.0.1",
-  "description": "Stream downloader for discord-player",
+  "version": "2.0.0",
+  "description": "Stream extractor for discord-player via youtube-dl",
   "main": "index.js",
   "scripts": {
     "test": "cd test && node ."
@@ -14,9 +14,8 @@
     "discord-player",
     "downloader",
     "youtube",
-    "youtube-dl",
-    "ytdl",
-    "ytdl-core",
+    "soundcloud",
+    "facebook",
     "ffmpeg",
     "discord"
   ],
@@ -27,6 +26,6 @@
   },
   "homepage": "https://github.com/Snowflake107/discord-player-downloader#readme",
   "dependencies": {
-    "youtube-dl": "^3.0.2"
+    "youtube-dl": "^3.5.0"
   }
 }

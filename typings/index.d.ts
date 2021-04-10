@@ -1,11 +1,24 @@
 declare module "@discord-player/downloader" {
-    import ytdl, { Info, Options, Youtubedl } from "youtube-dl";
+    import ytdl, { Youtubedl } from "youtube-dl";
 
     const version: string;
+    
+    export interface Info {
+        title: string;
+        duration: number;
+        thumbnail: string;
+        views: number;
+        author: string;
+        description: string;
+        url: string;
+        engine: Youtubedl;
+    }
 
     class Downloader {
-        static download(url: string, args?: string[], options: { [key: string]: string }): Youtubedl;
-        static getInfo(url: string, args?: string[], options: Options): Promise<Info>;
+        static download(url: string): Youtubedl;
+        static getInfo(url: string): Promise<Info>;
+        static validate(url: string): boolean;
+        static important(): boolean;
     }
 
     export {

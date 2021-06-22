@@ -1,5 +1,5 @@
 declare module "@discord-player/downloader" {
-    import ytdl, { Youtubedl } from "youtube-dl";
+    import { Readable } from "stream";
 
     const version: string;
     
@@ -11,11 +11,11 @@ declare module "@discord-player/downloader" {
         author: string;
         description: string;
         url: string;
-        engine: Youtubedl;
+        engine: Readable;
     }
 
     class Downloader {
-        static download(url: string): Youtubedl;
+        static download(url: string): Readable;
         static getInfo(url: string): Promise<Info>;
         static validate(url: string): boolean;
         static important(): boolean;

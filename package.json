@@ -1,6 +1,6 @@
 {
   "name": "@discord-player/downloader",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Stream extractor for discord-player via youtube-dl",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/Snowflake107/discord-player-downloader#readme",
   "dependencies": {
-    "youtube-dl": "^3.5.0"
+    "youtube-dl-exec": "^1.2.4"
   }
 }

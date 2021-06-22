@@ -1,4 +1,4 @@
-const ytdl = require("youtube-dl");
+const ytdl = require("youtube-dl-exec").raw;
 
 class Downloader {
 
@@ -9,12 +9,29 @@ class Downloader {
     /**
      * Downloads stream through youtube-dl
      * @param {string} url URL to download stream from
-     * @returns {Youtubedl}
      */
     static download(url) {
         if (!url || typeof url !== "string") throw new Error("Invalid url");
 
-        const stream = ytdl(url, [], {});
+        const ytdlProcess = ytdl(url, {
+                o: '-',
+                q: '',
+                f: 'bestaudio[ext=webm+acodec=opus+asr=48000]/bestaudio',
+                r: '100K',
+            },
+            {
+                stdio: ['ignore', 'pipe', 'ignore']
+            }
+        );
+
+        if (!ytdlProcess.stdout) throw new Error('No stdout');
+        const stream = ytdlProcess.stdout;
+
+        stream.on("error", () => {
+            if (!ytdlProcess.killed) ytdlProcess.kill();
+            stream.resume();
+        });
+
         return stream;
     }
 
@@ -26,21 +43,37 @@ class Downloader {
         return new Promise((resolve, reject) => {
             if (!url || typeof url !== "string") reject(new Error("Invalid url"));
 
-            ytdl.getInfo(url, (error, info) => {
-                if (error) resolve(null);
-                const obj = {
-                    title: info.fulltitle || info.title || "Attachment",
-                    duration: info._duration_raw ? info._duration_raw * 1000 : 0,
-                    thumbnail: info.thumbnails ? info.thumbnails[0].url : "https://upload.wikimedia.org/wikipedia/commons/2/2a/ITunes_12.2_logo.png",
-                    views: info.view_count || 0,
-                    author: info.channel || "YouTubeDL_Media",
-                    description: info.description || "",
-                    url: url
-                };
+            const a = ytdl(url, {
+                dumpSingleJson: true,
+                skipDownload: true,
+                simulate: true,
+            }, { stdio: ['ignore', 'pipe', 'ignore'] });
 
-                Object.defineProperty(obj, "engine", { get: () => Downloader.download(url), enumerable: true });
+            const chunk = [];
 
-                resolve(obj);
+            a.on("error", () => {
+                resolve(null);
+            });
+
+            a.stdout.on("data", x => chunk.push(x));
+            
+            a.stdout.on("end", () => {
+                try {
+                    const info = JSON.parse(Buffer.concat(chunk).toString());
+                    const data = {
+                        title: info.fulltitle || info.title || "Attachment",
+                        duration: (info.duration || info.duration_raw) * 1000 || 0,
+                        thumbnail: info.thumbnails ? info.thumbnails[0].url : info.thumbnail || "https://upload.wikimedia.org/wikipedia/commons/2/2a/ITunes_12.2_logo.png",
+                        views: info.view_count || 0,
+                        author: info.uploader || info.channel || "YouTubeDL Media",
+                        description: info.description || "",
+                        url: url
+                    };
+
+                    resolve(data);
+                } catch {
+                    resolve(null);
+                }
             });
         });
     }

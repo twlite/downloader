@@ -67,7 +67,10 @@ class Downloader {
                         views: info.view_count || 0,
                         author: info.uploader || info.channel || "YouTubeDL Media",
                         description: info.description || "",
-                        url: url
+                        url: url,
+                        get engine() {
+                            return Downloader.download(url)
+                        }
                     };
 
                     resolve(data);

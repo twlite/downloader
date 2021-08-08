@@ -1,5 +1,6 @@
 declare module "@discord-player/downloader" {
-    import { Readable } from "stream";
+    import type { Readable } from "stream";
+    import type { raw as ytdl } from "youtube-dl-exec";
 
     const version: string;
     

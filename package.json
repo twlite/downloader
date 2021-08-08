@@ -1,6 +1,6 @@
 {
   "name": "@discord-player/downloader",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Stream extractor for discord-player via youtube-dl",
   "main": "index.js",
   "types": "typings/index.d.ts",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Snowflake107/discord-player-downloader.git"
+    "url": "git+https://github.com/DevSnowflake/discord-player-downloader.git"
   },
   "keywords": [
     "discord-player",
@@ -20,12 +20,12 @@
     "ffmpeg",
     "discord"
   ],
-  "author": "Snowflake107",
+  "author": "DevAndromeda",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Snowflake107/discord-player-downloader/issues"
+    "url": "https://github.com/DevSnowflake/discord-player-downloader/issues"
   },
-  "homepage": "https://github.com/Snowflake107/discord-player-downloader#readme",
+  "homepage": "https://github.com/DevSnowflake/discord-player-downloader#readme",
   "dependencies": {
     "youtube-dl-exec": "^1.2.4"
   }

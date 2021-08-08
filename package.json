@@ -1,6 +1,6 @@
 {
   "name": "@discord-player/downloader",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "description": "Stream extractor for discord-player via youtube-dl",
   "main": "index.js",
   "types": "typings/index.d.ts",

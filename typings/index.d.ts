@@ -17,7 +17,7 @@ declare module "@discord-player/downloader" {
 
     class Downloader {
         static download(url: string): Readable;
-        static getInfo(url: string): Promise<Info>;
+        static getInfo(url: string): Promise<{ playlist?: any, info: Info[] }>;
         static validate(url: string): boolean;
         static important(): boolean;
     }

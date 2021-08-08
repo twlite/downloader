@@ -73,7 +73,7 @@ class Downloader {
                         }
                     };
 
-                    resolve(data);
+                    resolve({ info: [data]});
                 } catch {
                     resolve(null);
                 }

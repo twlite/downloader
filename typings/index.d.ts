@@ -12,6 +12,7 @@ declare module "@discord-player/downloader" {
         author: string;
         description: string;
         url: string;
+        source: string,
         engine: Readable;
     }
 

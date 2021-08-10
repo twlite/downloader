@@ -68,6 +68,7 @@ class Downloader {
                         author: info.uploader || info.channel || "YouTubeDL Media",
                         description: info.description || "",
                         url: url,
+                        source: info.extractor,
                         get engine() {
                             return Downloader.download(url)
                         }

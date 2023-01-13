@@ -1,6 +1,8 @@
 # Downloader
 Extractor for **[discord-player](https://npmjs.com/package/discord-player)** using **[youtube-dl](https://npmjs.com/package/youtube-dl)**.
 
+# Source code is now available at https://github.com/Androz2091/discord-player
+
 # Installing
 
 ```sh
